@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="jp">
   <head>
+<script>
+  var url = new URL(window.location.href);
+  var p = url.searchParams.get("p");
+  if(p == null || Date.now() - p > 40000000 || Date.now() < p){
+    window.location.replace("https://tkgames.jp/holo_watermelon.html");
+    window.location.href = "https://tkgames.jp/holo_watermelon.html";
+  }
+</script>
+
         <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4Y2YSYQFX4"></script>
 <script>
