@@ -25,6 +25,7 @@
     <title>ホロのスイカ</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
@@ -130,12 +131,24 @@
                 //  unityInstance.SetFullscreen(1);
                 //};
               }).catch((message) => {
-                alert(message);
+                if(window.confirm("ゲームの読み込みに失敗しました。再読み込みします。\nキャンセルするとヘルプページに移動します。")){
+                  $.ajax({
+                    type: "post",
+                    url: window.location.href,
+                    async: false,
+                    cache : false,
+                  }).done(function () {
+                    window.location.reload(true);
+                  });
+                }else{
+                  window.location.href = "https://tkgames.jp/help/";
+                }
               });
             };
 
       document.body.appendChild(script);
 
     </script>
+    <script src="./fullscreen.js"></script>
   </body>
 </html>
