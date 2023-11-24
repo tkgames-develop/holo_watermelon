@@ -132,13 +132,33 @@
                 //};
               }).catch((message) => {
                 if(window.confirm("ゲームの読み込みに失敗しました。再読み込みします。\nキャンセルするとヘルプページに移動します。")){
+                  progressBarFull.style.width = "20%";
                   $.ajax({
-                    type: "post",
-                    url: window.location.href,
-                    async: false,
+                    type: "get",
+                    url: buildUrl + "/melon.wasm",
+                    async: true,
                     cache : false,
-                  }).done(function () {
-                    window.location.reload(true);
+                  })
+                  .done(function () {
+                    progressBarFull.style.width = "50%";
+                    $.ajax({
+                      type: "get",
+                      url: buildUrl + "/melon.data",
+                      async: true,
+                      cache : false,
+                    })
+                    .done(function () {
+                      progressBarFull.style.width = "80%";
+                      $.ajax({
+                        type: "get",
+                        url: buildUrl + "/melon.framework.js",
+                        async: true,
+                        cache : false,
+                      })
+                      .done(function () {                    
+                        window.location.reload(true);
+                      });
+                    });
                   });
                 }else{
                   window.location.href = "https://tkgames.jp/help/";
