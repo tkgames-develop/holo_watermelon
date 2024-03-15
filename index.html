@@ -4,10 +4,14 @@
 <script>
   var url = new URL(window.location.href);
   var p = url.searchParams.get("p");
-  if(p == null || Date.now() - p > 20000000 || Date.now() < p){
+  if(p == null || Date.now() - p > 40000000 || Date.now() < p){
     window.location.replace("https://tkgames.jp/holo_watermelon.html");
     window.location.href = "https://tkgames.jp/holo_watermelon.html";
   }
+  
+  window.onbeforeunload = function(e) {
+        e.returnValue = "このページを離れてもよろしいですか？";
+      };
 </script>
 
         <!-- Google tag (gtag.js) -->
@@ -167,7 +171,6 @@
             };
 
       document.body.appendChild(script);
-
     </script>
     <script src="./fullscreen.js"></script>
   </body>
